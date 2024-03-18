@@ -1,3 +1,6 @@
+# git config ignore cert  
+git config http.sslVerify false  
+
 # Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
 This project was bootstrapped with Fastify-CLI.
 
