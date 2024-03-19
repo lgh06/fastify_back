@@ -2,11 +2,13 @@ const fp = require('fastify-plugin')
 const oracledb = require('oracledb')
 const CONFIG = require('../CONFIG');
 
+const DB_CONFIG = CONFIG.ORACLE_DB_CONFIG;
+
+
 oracledb.initOracleClient({
-  binaryDir: 'E:\exe\instantclient_12_2'
+  binaryDir: DB_CONFIG.binaryDir
 })
 
-const DB_CONFIG = CONFIG.ORACLE_DB_CONFIG;
 
 async function run() {
   let pool;
