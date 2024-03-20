@@ -20,11 +20,7 @@ async function run() {
 
 
 function fastifyOracle11g(fastify, options, done) {
-  fastify.decorate('oracle11g', {
-    getter(){
-      return run().catch(done);
-    }
-  })
+  fastify.decorate('oracle11g', run)
 
   done()
 }
