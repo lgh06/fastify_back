@@ -5,6 +5,4 @@ const ORACLE_DB_CONFIG = {
   connectString: ''//Database address: {IP: PORT/Database name}
 }
 
-module.exports = {
-  ORACLE_DB_CONFIG
-}
+export { ORACLE_DB_CONFIG }

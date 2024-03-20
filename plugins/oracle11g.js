@@ -1,6 +1,6 @@
-const fp = require('fastify-plugin')
-const oracledb = require('oracledb')
-const CONFIG = require('../CONFIG');
+import fp from 'fastify-plugin'
+import  oracledb from 'oracledb'
+import * as CONFIG from '../CONFIG.js';
 
 const DB_CONFIG = CONFIG.ORACLE_DB_CONFIG;
 
@@ -33,4 +33,4 @@ function fastifyOracle11g(fastify, options, done) {
   }).catch(done);
 }
 
-module.exports = fp(fastifyOracle11g, { name: 'fastify-oracle-11g' })
+export default fp(fastifyOracle11g, { name: 'fastify-oracle-11g' })
