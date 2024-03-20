@@ -1,5 +1,6 @@
 
-import { db as oracle11g } from "../../plugins/oracle11g.js";
+import { Oracle11gConn as oracle11g} from "../../plugins/oracle11g.js";
+import { mssql} from "../../plugins/mssql.js";
 
 export default async function (fastify, opts) {
   fastify.get('/', async function (request, reply) {
@@ -30,4 +31,21 @@ export default async function (fastify, opts) {
 
     return result.rows;
   })
+
+
+  fastify.get('/5', async function (request, reply) {
+
+    const result = await mssql.query`select * from AA_Bank `
+    return result
+    
+  })
+
+  fastify.get('/6', async function (request, reply) {
+
+    const result = await this.mssql.query`select * from AA_Bank `
+    return result
+    
+  })
+
+
 }
