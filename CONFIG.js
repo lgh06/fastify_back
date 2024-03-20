@@ -5,4 +5,6 @@ const ORACLE_DB_CONFIG = {
   connectString: ''//Database address: {IP: PORT/Database name}
 }
 
-export { ORACLE_DB_CONFIG }
+const MSSQL_DB_CONN_STR = "Server=xx,1433;Database=yy;User Id=zz;Password=aa;Encrypt=false";
+
+export { ORACLE_DB_CONFIG, MSSQL_DB_CONN_STR }
