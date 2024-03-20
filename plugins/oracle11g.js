@@ -1,36 +1,33 @@
 import fp from 'fastify-plugin'
-import  oracledb from 'oracledb'
+import  OracleDB from 'oracledb'
 import * as CONFIG from '../CONFIG.js';
 
 const DB_CONFIG = CONFIG.ORACLE_DB_CONFIG;
 
 
-oracledb.initOracleClient({
+OracleDB.initOracleClient({
   binaryDir: DB_CONFIG.binaryDir
 })
 
-
 async function run() {
-  let pool;
-
-  pool = await oracledb.createPool(DB_CONFIG);
-  let connection;
-  connection = await pool.getConnection();
+  let pool =  await OracleDB.createPool(DB_CONFIG);
+  let connection = await pool.getConnection();
+  if(connection == undefined){
+    throw new Error("No Orac 11g connection")
+  }
   return connection;
-      // result = await connection.execute(`SELECT * FROM SYS_USER`);
-
 }
 
 
 function fastifyOracle11g(fastify, options, done) {
-  run().then(connection => {
-
-    if (!fastify.oracle11g) {
-      fastify.decorate('oracle11g', connection)
+  fastify.decorate('oracle11g', {
+    getter(){
+      return run().catch(done);
     }
-    fastify.addHook('onClose', (fastify, done) => connection.close().then(done).catch(done))
-    done()
-  }).catch(done);
+  })
+
+  done()
 }
 
 export default fp(fastifyOracle11g, { name: 'fastify-oracle-11g' })
+export { run as db };
