@@ -1,3 +1,7 @@
+## Oracle instant client  
+https://www.oracle.com/database/technologies/instant-client.html  
+
+
 # Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
 
 This project was bootstrapped with Fastify-CLI.
