@@ -1,5 +1,14 @@
-## Oracle instant client  
+## HSH 后端NodeJS API项目  
+NodeJS v18  
+Fastify v4  
+knex  
+mssql  
+oracledb  
+
+## Oracle instant client 下载地址 及 安装文档  
 https://www.oracle.com/database/technologies/instant-client.html  
+https://docs.oracle.com/en/database/oracle/oracle-database/12.2/lnoci/instant-client.html  
+https://docs.oracle.com/cd/E83411_01/OREAD/installing-oracle-database-instant-client.htm  
 
 
 # Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
