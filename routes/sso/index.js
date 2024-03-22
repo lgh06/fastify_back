@@ -1,5 +1,6 @@
 import {knexMssql, knexOracle} from "../../helpers/index.mjs";
 
+
 import formbody from "@fastify/formbody";
 
 export default async function (fastify, opts) {
@@ -29,5 +30,19 @@ export default async function (fastify, opts) {
   fastify.post('/e9', async function (request, reply) {
     let {query, body, params, header} = request
     return {query, body, params, header};
+  })
+
+  fastify.post('/e9getLoginForm', async function (request, reply) {
+    return fetch("http://oa.heshenghe.cn:8089/api/hrm/login/getLoginForm",{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: `loginid=&langid=7&`
+    }).then(res => {
+      return res.json()
+    })
+    // let {query, body, params, header} = request
+    // return {query, body, params, header};
   })
 }
