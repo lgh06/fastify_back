@@ -50,19 +50,24 @@ export default async function (fastify, opts) {
 
 
   fastify.get('/e9getQCLoginStatus', async function (request, reply) {
-    let loginkey = request.query.loginkey
-    return fetch("http://oa.heshenghe.cn:8089/api/hrm/login/qrcode/getQCLoginStatus",{
+    let loginkey = request.query.loginkey;
+    let cookies, result;
+    await fetch("http://oa.heshenghe.cn:8089/api/hrm/login/qrcode/getQCLoginStatus",{
       method: "POST",
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: `langid=7&loginkey=${loginkey}&isie=false&`
     }).then(res => {
-      res.headers.forEach((value, key) => {
-        console.log(key, value)
-      })
+      cookies = res.headers.getSetCookie();
+      if(cookies && cookies.length){
+        cookies = cookies.filter(e => String(e).includes("loginidweaver"));
+      }
       return res.json()
+    }).then(res =>{
+      result = res;
     })
+    return { cookies, result}
     // let {query, body, params, header} = request
     // return {query, body, params, header};
   })
