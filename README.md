@@ -10,6 +10,9 @@ https://www.oracle.com/database/technologies/instant-client.html
 https://docs.oracle.com/en/database/oracle/oracle-database/12.2/lnoci/instant-client.html  
 https://docs.oracle.com/cd/E83411_01/OREAD/installing-oracle-database-instant-client.htm  
 
+## Git  
+git config http.sslVerify false
+
 
 # Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
 
