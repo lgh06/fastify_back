@@ -2,9 +2,11 @@ import {knexMssql, knexOracle} from "../../helpers/index.mjs";
 
 
 import formbody from "@fastify/formbody";
+import cors from '@fastify/cors'
 
 export default async function (fastify, opts) {
-  fastify.register(formbody);
+  await fastify.register(formbody);
+  await fastify.register(cors);
 
   // http://oa.heshenghe.cn:8089/interface/Entrance.jsp?id=titanlocal
 
@@ -32,14 +34,33 @@ export default async function (fastify, opts) {
     return {query, body, params, header};
   })
 
-  fastify.post('/e9getLoginForm', async function (request, reply) {
+  fastify.get('/e9getLoginForm', async function (request, reply) {
     return fetch("http://oa.heshenghe.cn:8089/api/hrm/login/getLoginForm",{
       method: "POST",
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: `loginid=&langid=7&`
+      body: `loginid=&langid=7&` // 6
     }).then(res => {
+      return res.json()
+    })
+    // let {query, body, params, header} = request
+    // return {query, body, params, header};
+  })
+
+
+  fastify.get('/e9getQCLoginStatus', async function (request, reply) {
+    let loginkey = request.query.loginkey
+    return fetch("http://oa.heshenghe.cn:8089/api/hrm/login/qrcode/getQCLoginStatus",{
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: `langid=7&loginkey=${loginkey}&isie=false&`
+    }).then(res => {
+      res.headers.forEach((value, key) => {
+        console.log(key, value)
+      })
       return res.json()
     })
     // let {query, body, params, header} = request
