@@ -7,7 +7,7 @@ export default async function (fastify, opts) {
   })
 
   fastify.get('/2', async function (request, reply) {
-    let result = await knexMssql.select(["EnumCode","EnumType"]).from(`UFMeta_104.dbo.AA_Enum`).limit(10);
+    let result = await knexMssql.select(knexOracle.raw("*")).from(`UFDATA_999_2018.dbo.CusDeliverAdd`).limit(10);
     return result;
   })
 }
