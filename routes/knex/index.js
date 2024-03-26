@@ -10,4 +10,9 @@ export default async function (fastify, opts) {
     let result = await knexMssql.select("*").from(`UFDATA_999_2018.dbo.CusDeliverAdd`).orderBy("id","desc").limit(10);
     return result;
   })
+  fastify.get('/3', async function (request, reply) {
+    let oracle = await knexOracle.select(knexOracle.raw("id,name")).fromRaw("CRM_CustomerInfo").orderByRaw("id asc").limit(20);
+    let mssql = await knexMssql.select("*").from(`UFDATA_999_2018.dbo.CusDeliverAdd`).orderBy("id","desc").limit(10);
+    return {oracle,mssql};
+  })
 }
