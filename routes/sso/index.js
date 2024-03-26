@@ -63,6 +63,7 @@ export default async function (fastify, opts) {
       if(cookies && cookies.length){
         cookies = cookies.filter(e => String(e).includes("loginidweaver"));
       }
+      // 若含有cookies 则 生成jwtToken 并存储到前端
       return res.json()
     }).then(res =>{
       result = res;
